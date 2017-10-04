@@ -156,4 +156,95 @@ divOfelements = foldr (/) 1 [1, 2]
 --raise a lists elements to a power
 pow3list = [3 ^ n | n <- [1..5]]
 
- 
+--operations on multiple lists
+multTable = [[x * y | y <- [1..10]] | x <- [1..10]]
+
+{-
+  !!TUPLES
+-}
+
+randTuple = (1, "Random Tuple")
+
+--tuple pairs
+bobSmith = ("Bob Smith", 52)
+--retrive values from tuples
+bobsName :: String
+bobsName = fst bobSmith
+bobsAge :: Int
+bobsAge = snd bobSmith
+
+--convert values from lists into tuple pairs
+names = ["Bob", "Mary", "Tom"]
+address = ["123 Main", "234 North", "567 South"]
+namesAndAddress = zip names address
+
+{-
+  FUNCTIOS !!
+-}
+
+--we can define functions to run if we start with a main function
+--functions cannot begin with an upper case letter
+main = do
+  putStr "Whats your name: "
+  name <- getLine
+  putStrLn ("Hello " ++ name)
+
+--this is a type declaration -> optional
+addMe :: Int -> Int -> Int
+--functioname param1 param2 = operations (return value)
+addMe x y = x + y
+--without declaration
+multMe x y = x * y
+
+--we can add tuples
+addTuples :: (Int, Int) -> (Int, Int) -> (Int, Int)
+addTuples (x, y) (x2, y2) = (x + x2, y + y2)
+
+whatAge :: Int -> String
+whatAge 16 = "You can drive"
+
+{-
+  RECURISON
+-}
+factorial :: Int -> Int
+factorial 0 = 1
+factorial n = n * factorial(n-1)
+
+--condition guards /basic if statements
+isOdd :: Int -> Bool
+isOdd n
+  | n`mod` 2 == 0 = False
+  | otherwise = True
+--without guards
+isEven :: Int -> Bool
+isEven n = n `mod` 2 == 0
+
+--more guards
+whatGrade :: Int -> String
+whatGrade age 
+  | (age>=5) && (age<=6) = "Kindergarten"
+  | (age>6) && (age<=10) = "Primary School"
+  | (age>10) && (age<=14) = "Middle School"
+  | (age>14) && (age<=19) = "High School"
+  | otherwise = "Go to college"
+
+--where clause
+batAvgRating :: Double -> Double -> String
+batAvgRating hits atBats
+  | avg <= 0.200 = "Terrible"
+  | avg <= 0.250 = "Good"
+  | avg <= 0.280 = "Great"
+  | otherwise = "Superstar"
+  where avg = hits / atBats
+
+
+--access list items in a very efficient way
+getListItems :: [Int] -> String
+getListItems [] = "Your list is empty"
+getListItems (x:[]) = "Your list starts with " ++ show x
+getListItems (x:y:[]) = "Your list contains " ++ show x ++ " and " ++ show y
+getListItems (x:xs) = "The 1st item in the list is " ++ show x ++ " and the rest of the items are" ++ show xs
+
+getFirstItem :: String -> String
+getFirstItem [] = "Empty String"
+getFirstItem all@(x:xs) = "The first letter in " ++ all ++ " is " ++ [x]
