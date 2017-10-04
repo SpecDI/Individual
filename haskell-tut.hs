@@ -123,3 +123,37 @@ infinitPow10 = [10, 20..]
 
 --repeat values: take <nr_of_rep> (repeat <value>)
 many2s = take 10 (repeat 2)
+
+--replicate to generate multiple copies of the same value
+many3s = replicate 10 3
+
+--cycle values 
+cyclelist = take 10 (cycle [1..5])
+
+--multiple values from a list by a constant
+-- <constatn> = [<tempVar> * nr | <tempVar> <- <list>, <clause condition>]
+listTimes2 = [x * 2 | x <- [1..10], x * 2 < 18]
+divBy9and13 = [x | x <- [1..500], x `mod` 13 == 0, x `mod` 9 == 0]
+
+--create sorted list
+initalList = [1, 8, 5, 3, 5, 8, 2]
+sortedList = sort initalList
+
+--add the elemnts of two list one by one
+sumOfLists = zipWith (+) [1, 2, 3, 4, 5] [6, 7, 8, 9, 10]
+
+--filter elements: filter (<condition>) <list>
+listBiggerThan5 = filter (>5) [1..10]
+
+--sort of while loop
+evensUpTo20 = takeWhile (<=20) [2, 4..]
+
+--multiply the elements of a list: foldl/foldr (<operation>) <number> <list>
+multOfList = foldl (*) 2 [1, 2, 3, 4]
+sumOfelements = foldr (+) 3 [1, 2, 3, 4]
+divOfelements = foldr (/) 1 [1, 2]
+
+--raise a lists elements to a power
+pow3list = [3 ^ n | n <- [1..5]]
+
+ 
