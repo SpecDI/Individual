@@ -248,3 +248,98 @@ getListItems (x:xs) = "The 1st item in the list is " ++ show x ++ " and the rest
 getFirstItem :: String -> String
 getFirstItem [] = "Empty String"
 getFirstItem all@(x:xs) = "The first letter in " ++ all ++ " is " ++ [x]
+
+{-
+  HIGH ORDER FUNCTIONS !
+  passing functions as paramters
+-}
+
+times4 :: Int -> Int
+times4 x = x * 4
+listTimes4 = map times4 [1..5]
+
+multBy4 :: [Int] -> [Int]
+multBy4 [] = []
+multBy4 (x:xs) = times4 x : multBy4 xs
+
+--more recursion
+areStringEq :: [Char] -> [Char] -> Bool
+areStringEq [] [] = True
+areStringEq (x:xs) (y:ys) = x == y && areStringEq xs ys
+areStringEq _ _ = False
+
+--function wthin a function
+doMult :: (Int -> Int) ->Int
+doMult func = func 3
+num3Times4 = doMult times4
+
+--return a function
+getAddFunc :: Int -> (Int -> Int)
+getAddFunc x y = x + y
+adds3 = getAddFunc 3
+fourPlus3 = adds3 4
+
+{-
+  LAMBDAS
+  functions that don't have a name
+-}
+dbl1To10 = map(\x -> x * 2) [1..10]
+
+--if statements
+doubleEvens x= 
+  if(x `mod` 2 /= 0)
+    then x
+    else x * 2
+
+doubleListOfEvens = map doubleEvens [1..5]
+
+--case (type of switch)
+getClass :: Int -> String
+getClass n = case n of
+  5 -> "Kindergarten"
+  6 -> "School"
+  _ -> "Go away"
+
+{-
+  MODULES -> see samplefunctions.hs
+-}
+
+{-
+  NUMERATION TYPES
+-}
+
+data BaseballPlayer = Pitcher
+                    | Cathcer
+                    | Infilder
+                    | Outfield
+                  deriving Show
+barryBonds :: BaseballPlayer -> Bool
+barryBonds Outfield = True
+barryInOF = print(barryBonds Outfield)
+
+
+{-
+  CUSTOM TYPES
+-}
+
+data Customer = Customer String String Double
+  deriving Show
+
+tomSmith :: Customer
+tomSmith = Customer "Tom Smith" "123 Main" 20.5
+
+getBalance :: Customer -> Double
+getBalance (Customer _ _ b) = b
+
+--the $ operator -> removes parantheses
+
+--the dot operator chains functions
+sumValue = putStrLn . show $ 1 + 2
+
+{-
+  TYPE CLASSES
+-}
+
+--the fibb sequence
+fib = 1 : 1 : [a + b | (a, b) <- zip fib (tail fib)]
+
