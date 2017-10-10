@@ -31,5 +31,22 @@ rmdups (x:xs) = x : filter (/=x) (rmdups xs)
 result :: Ord a => [a] -> [(Int, a)]
 result vs = sort [(count v vs, v) | v <- rmdups vs]
 
-winner :: Ord a => [a] -> a
-winner vs = snd . last . result vs
+
+--Exsercises
+--1
+f :: Int -> Int
+p :: Int -> Bool
+f x = x ^ 2
+p x | x >= 3 = True
+    | otherwise = False
+lstCompr :: [Int] -> [Int]
+lstCompr xs = map f resLst
+        where
+            resLst = filter p xs
+           
+--2
+--a
+rtrTrue :: a -> Bool
+rtrTrue _ =  True
+all_ctm :: (a -> Bool) -> [Bool] -> Bool
+all_ctm rtrTrue x = and . map rtrTrue x
